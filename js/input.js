@@ -156,7 +156,13 @@ let updateRecentReceipts = () => {
         let newReceiptTableBody = document.createElement('tbody');
         newReceiptTableBody.setAttribute('id', 'recentReceiptTableBody');
         let totalSpent = 0;
-        resp.forEach(receipt => {
+        resp
+        .sort((a, b) => {
+            let timeA = new Date(a.date).getTime();
+            let timeB = new Date(b.date).getTime();
+            return timeB-timeA;
+        })
+        .forEach(receipt => {
             console.log(receipt);
             let row = document.createElement('tr');
             let company = document.createElement('td');
@@ -197,7 +203,7 @@ let updateRecentReceipts = () => {
         let parent = receiptTableBody.parentNode;
         parent.replaceChild(newReceiptTableBody, receiptTableBody);
         let totalSpentDiv = document.getElementById('spentDiv');
-        totalSpentDiv.innerHTML = `Total Spent: ${totalSpent}`;
+        totalSpentDiv.innerHTML = `Total Spent: $${Math.round(totalSpent*100)/100}`;
     })
     .catch(err => {
         console.log(err);

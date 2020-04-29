@@ -11,6 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/jquery-ui.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -175,10 +176,10 @@ body {
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <div class="row">
-                <div class="col-auto">
+                <div class="col-md-10">
                     <form id="receiptForm" class="needs-validation" novalidate>
                         <div class="form-row">
-                            <div class="col-2">
+                            <div class="col-md-2">
                                 <label class="mr-sm-2 sr-only" for="receiptType">Type</label>
                                 <select name="type" class="custom-select mr-sm-2" id="receiptTypeSelect">
                                     <option value="LOAN">LOAN</option>
@@ -193,14 +194,14 @@ body {
                                     
                                 </div>
                             </div>
-                            <div class="col-auto">
+                            <div class="col-md-3">
                                 <label class="sr-only" for="companyName">Company</label>
                                 <input name="company" type="text" class="form-control mb-2" id="companyInput" placeholder="Some Company">
                                 <div class="invalid-feedback" id="companyFeedback">
                                     
                                 </div>
                             </div>
-                            <div class="col-auto">
+                            <div class="col-md-4">
                                 <label class="sr-only" for="description">Description</label>
                                 <input type="text" class="form-control mb-2" id="descriptionInput"
                                     placeholder="Some Description" name="description">
@@ -208,7 +209,7 @@ body {
                                     
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-2">
                                 <label class="sr-only" for="amountGroup">Amount</label>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
@@ -220,7 +221,7 @@ body {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-1">
                                 <label class="sr-only" for="Date">Date</label>
                                 <input type="text" id="datepicker" class="form-control" placeholder="Date" name="dateInput">
                                 <div class="invalid-feedback" id="dateFeedback">
@@ -230,7 +231,7 @@ body {
                         </div>
                     </form>
                 </div>
-                <div class="col">
+                <div class="col-md-2">
                     <button type="submit" class="btn btn-primary mb-2" onclick="submitReceipt()"
                         id="submitButton">Submit</button>
                 </div>
