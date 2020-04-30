@@ -142,7 +142,9 @@ let getMonthlyReceipts = () => {
                       'rgba(255, 206, 86, 0.2)',
                       'rgba(75, 192, 192, 0.2)',
                       'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
+                      'rgba(255, 159, 64, 0.2)',
+                      'rgba(57, 73, 171, 0.2)',
+                      'rgba(213, 0, 249, 0.2)'
                   ],
                   borderColor: [
                       'rgba(255, 99, 132, 1)',
@@ -150,7 +152,9 @@ let getMonthlyReceipts = () => {
                       'rgba(255, 206, 86, 1)',
                       'rgba(75, 192, 192, 1)',
                       'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
+                      'rgba(255, 159, 64, 1)',
+                      'rgba(57, 73, 171, 1)',
+                      'rgba(213, 0, 249, 1)'
                   ]
             }], 
             labels: ['Loans', 'Food', 'Utilities', 'Clothing', 'Misc Purchases', 'School Fees', 'Insurance', 'Transportation']
