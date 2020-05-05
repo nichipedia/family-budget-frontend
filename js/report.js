@@ -1,11 +1,5 @@
-let getMonthlyReceipts = () => {
+let getMonthlyReceipts = (month, year) => {
     return new Promise((resolve, reject) => {
-        let date = new Date();
-        let month = date.getMonth()+1;
-        let year = date.getFullYear();
-        if (month < 10) {
-            month = `0${month}`;
-        }
         let baseUrl = `${window.location.protocol}//${window.location.hostname}:8080`
         $.ajax({
             url: `${baseUrl}/family-budget/rest/receipt/${month}/${year}`,
@@ -20,8 +14,11 @@ let getMonthlyReceipts = () => {
     });
 }
 
-(() => {
-    getMonthlyReceipts()
+let displayMonthReceipts = (month, year) => {
+    let header = document.getElementById('budgetHeader');
+    let today = moment(`${year}-${month}-01`);
+    header.innerHTML = `${today.format('MMMM YYYY')}`;
+    getMonthlyReceipts(month, year)
     .then(resp => {
         recurringExpenses = resp.filter(expense => {
             return (expense.type === 'LOAN' || expense.type === 'UTILITY' || expense.type === 'INSURANCE' || expense.type === 'SCHOOL_FEES');
@@ -165,4 +162,47 @@ let getMonthlyReceipts = () => {
     .catch(err => {
         console.error(err);
     });
+}
+
+
+let generateNewReport = () => {
+    let input = $('option:selected').attr('value');
+    let month = input.split('-')[0];
+    let year = input.split('-')[1];
+    clearDom();
+    displayMonthReceipts(month, year);
+}
+
+
+let clearDom = () => {
+    let recuringTableBody = document.getElementById('recuringTableBody');
+    let miscTableBody = document.getElementById('miscTableBody');
+    recuringTableBody.innerHTML = '';
+    miscTableBody.innerHTML = '';
+}
+
+(() => {
+    let date = moment();
+    let month = date.month() + 1;
+    let year = date.year();
+    if (month < 10) {
+        month = `0${month}`;
+    }
+    let startMonth = moment('2020-04-01');
+    let monthDropDown = document.getElementById('monthsSelect');
+    let option = document.createElement('option');
+    option.setAttribute('value', `${month}-${year}`);
+    option.innerHTML = `${month}-${year}`;
+    monthDropDown.appendChild(option);
+    while (startMonth.year() != moment().year() || startMonth.month() != moment().month()) {
+        let option = document.createElement('option');
+        tempMonth = startMonth.month() + 1;
+        tempYear = startMonth.year();
+        option.setAttribute('value', `0${tempMonth}-${tempYear}`);
+        option.innerHTML = `0${tempMonth}-${tempYear}`;
+        startMonth.add(1, 'month');
+        monthDropDown.appendChild(option);
+    }
+    
+    displayMonthReceipts(month, year);
 })();
